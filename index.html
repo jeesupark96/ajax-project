@@ -8,12 +8,54 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" >
+  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-  </header>
-  <main>
-  </main>
+  <div class="open-page">
+    <header>
+      <div class="openhead">
+        <h1 class="openh1">NBA STAT FINDER</h1>
+      </div>
+    </header>
+    <main>
+      <img class="begin-logo" src="https://blog.logomyway.com/wp-content/uploads/2017/01/nba-logo-1.jpg" alt="nba-logo-1">
+    </main>
+    <div class="begin-but">
+      <button class="begin">Begin</button>
+    </div>
+  </div>
+  <div class="hidden">
+    <h1 class="infohead">NBA STAT FINDER</h1>
+    <div class="infointerior">
+      <h2 class="playerinfo">Find Player Info</h2>
+      <ol class="info-list">
+        <li>Height</li>
+        <li>Age</li>
+        <li>Team</li>
+        <li>Position</li>
+      </ol>
+      <form action="" class="form">
+        <label for="infoname"></label>
+        <input type="text" class="infoname" placeholder="Last Name">
+        <label for="searchinfo"></label>
+        <input type="submit" name="infosearch" id="infosearch">
+      </form>
+
+    </div>
+    <div class="diventry">
+      <ul id="user-list"></ul>
+    </div>
+
+  </div>
+  <footer class="bottom">
+    <h1 class="footlabel">NBA Stat Finder</h1>
+    <h2 class="footlabel">Player Info</h2>
+    <h2 class="footlabel">Stats</h2>
+    <h2 class="footlabel">Compare</h2>
+    <h2 class="footlabel">Scores</h2>
+  </footer>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
