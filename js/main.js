@@ -23,31 +23,40 @@ function getInfo(name) {
       console.log(this.responseText);
     }
   });
+  var targetUrl = encodeURIComponent('https://api-nba-v1.p.rapidapi.com/players?name=Williams&team=1&season=2021');
 
-  xhr.open('GET', 'https://api-nba-v1.p.rapidapi.com/players?name=James');
+  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
+  xhr.setRequestHeader('x-rapidapi-key', '1b8d6d3d44msh6a42d044a856858p1a0c39jsn1d0dcdaecf3d');
+  xhr.setRequestHeader('x-rapidapi-host', 'api-nba-v1.p.rapidapi.com');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    console.log(xhr.response);
+  });
+
+  // xhr.open('GET', 'https://api-nba-v1.p.rapidapi.com/players?name=Williams&team=1&season=2021');
   // xhr.open('GET', ('https://api-nba-v1.p.rapidapi.com/players?id=') + Math.floor(Math.random() * 450));
+  // xhr.setRequestHeader('x-rapidapi-key', '1b8d6d3d44msh6a42d044a856858p1a0c39jsn1d0dcdaecf3d');
+  // xhr.setRequestHeader('x-rapidapi-host', 'api-nba-v1.p.rapidapi.com');
 
-  xhr.setRequestHeader('X-RapidAPI-Key', '4f342a5e8emsh1448e6e6d8cb504p1ed7bejsn9179a8339002');
-  xhr.setRequestHeader('X-RapidAPI-Host', 'api-nba-v1.p.rapidapi.com');
-
-  xhr.send(data);
-
-  console.log(xhr.response.players);
+  // xhr.send();
+  console.log(xhr);
+  console.log(data);
 
   xhr.addEventListener('load', function () {
 
-    for (let i = 0; i < xhr.response.api.players.length; i++) {
+    for (let i = 0; i < xhr.response.response.length; i++) {
 
       event.preventDefault();
+      const player = xhr.response;
       var objectOne = {
-        Name: 'Name: ' + xhr.response.api.players[i].firstName + ' ' + xhr.response.api.players[i].lastName,
-        Height: 'Height: ' + xhr.response.api.players[i].heightInMeters,
-        Weight: 'Weight: ' + xhr.response.api.players[i].weightInKilograms,
-        YearsPro: 'Years Pro: ' + xhr.response.api.players[i].yearsPro,
-        Education: 'Birth Place: ' + xhr.response.api.players[i].affiliation,
-        Jerseynum: 'Jersey Number: ' + xhr.response.api.players[i].leagues.standard.jersey,
-        Position: 'Position: ' + xhr.response.api.players[i].leagues.standard.pos,
-        College: 'College ' + xhr.response.api.players[i].collegeName
+        Name: 'Name: ' + player[i].firstName + ' ' + player[i].lastName,
+        Height: 'Height: ' + player[i].heightInMeters,
+        Weight: 'Weight: ' + player[i].weightInKilograms,
+        YearsPro: 'Years Pro: ' + player[i].yearsPro,
+        Education: 'Birth Place: ' + player[i].affiliation,
+        Jerseynum: 'Jersey Number: ' + player[i].leagues.standard.jersey,
+        Position: 'Position: ' + player[i].leagues.standard.pos,
+        College: 'College ' + player[i].collegeName
       };
       data.entries.unshift(objectOne);
       form.reset();
@@ -88,6 +97,7 @@ function getInfo(name) {
   infointerior.className = 'hidden';
 
   return playerinfo;
+
 }
 
 form.addEventListener('submit', getInfo);
