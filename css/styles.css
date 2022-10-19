@@ -158,5 +158,11 @@ li {
 }
 
 .diventry {
+  display: flex;
+  flex-direction: column;
   border: solid black;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
