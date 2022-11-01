@@ -166,3 +166,9 @@ li {
   justify-content: center;
   align-items: center;
 }
+
+.newinfodiv {
+  width: 400px;
+  height: 400px;
+  border-style: double;
+}

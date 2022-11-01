@@ -4,6 +4,10 @@ const infopage = document.querySelector('.hidden');
 const form = document.querySelector('.form');
 const infointerior = document.querySelector('.infointerior');
 const playerinfo = document.querySelector('.diventry');
+var div = document.createElement('div');
+div.className = 'newinfodiv';
+const listofplayers = document.getElementById('playername');
+
 beginbut.addEventListener('click', function () {
   openpage.className = 'hidden';
   infopage.className = 'find-info';
@@ -107,21 +111,37 @@ function getInfo(event) {
 
   for (let i = 0; i < data.entries.length; i++) {
     if (data.entries[i].Name === event.target.textContent) {
-      console.log(data.entries[i].ID);
+      data.entries[i].className = 'hidden';
+      const newinfo = data.entries[i];
+      console.log(newinfo);
       var targetUrl = encodeURIComponent('https://api-nba-v1.p.rapidapi.com/players?id=' + data.entries[i].ID);
       xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
       xhr.setRequestHeader('x-rapidapi-key', '1b8d6d3d44msh6a42d044a856858p1a0c39jsn1d0dcdaecf3d');
       xhr.setRequestHeader('x-rapidapi-host', 'api-nba-v1.p.rapidapi.com');
       xhr.responseType = 'json';
-      xhr.addEventListener('load', function () {
-        console.log((xhr.response.response[0]));
-        console.log(xhr);
 
+      const newdiv = document.createElement('div');
+      xhr.addEventListener('load', function () {
+        const player = newinfo;
+
+        var ObjectTwo = {
+          Name: player.Name,
+          ID: player.id,
+          Height: 'Height: ' + player.height,
+          Weight: 'Weight: ' + player.weight,
+          YearsPro: 'Years Pro: ' + player.YearsPro,
+          Education: 'Education: ' + player.college,
+          College: 'College ' + player.college
+        };
+        data.entries.unshift(ObjectTwo);
+        newdiv.appendChild(ObjectTwo);
       });
 
+      playerinfo.className = 'hidden';
       xhr.send(data);
     }
   }
+
 }
 
 playerinfo.addEventListener('click', getInfo);
